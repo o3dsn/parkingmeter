@@ -1,3 +1,13 @@
 package com.postech.fiap.parkingmeter.domain.model.dto;
 
-public record TicketDTO() {}
+import java.time.LocalDateTime;
+
+public record TicketDTO(
+        String id,
+        double valorTotalCobrado,
+        LocalDateTime horarioInicio,
+        LocalDateTime horarioFim,
+        String statusPagamento,
+        ParkingMeterDTO parquimetro,
+        VehicleDTO veiculo
+) {}
