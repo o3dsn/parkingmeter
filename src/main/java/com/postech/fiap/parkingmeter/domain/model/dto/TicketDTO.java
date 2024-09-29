@@ -6,13 +6,15 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-
-public record TicketDTO(
-    String id,
-    double valorTotalCobrado,
-    LocalDateTime horarioInicio,
-    LocalDateTime horarioFim,
-    String statusPagamento,
-    ParkingMeterDTO parquimetro,
-    VehicleDTO veiculo
-){}
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class TicketDTO {
+  String id;
+  double valorTotalCobrado;
+  LocalDateTime horarioInicio;
+  LocalDateTime horarioFim;
+  String statusPagamento;
+  ParkingMeterDTO parquimetro;
+  VehicleDTO veiculo;
+}

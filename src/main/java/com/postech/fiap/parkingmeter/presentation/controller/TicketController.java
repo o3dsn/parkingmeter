@@ -2,7 +2,10 @@ package com.postech.fiap.parkingmeter.presentation.controller;
 
 
 import com.postech.fiap.parkingmeter.domain.model.dto.TicketDTO;
+import com.postech.fiap.parkingmeter.domain.model.dto.forms.TicketForm;
 import com.postech.fiap.parkingmeter.domain.service.TicketService;
+import com.postech.fiap.parkingmeter.infrastructure.exception.TicketException;
+import com.postech.fiap.parkingmeter.infrastructure.exception.VehicleException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,8 +35,8 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<TicketDTO> create(@Valid @RequestBody TicketDTO ticketDTO) {
-        var created = this.ticketService.create(ticketDTO);
+    public ResponseEntity<TicketDTO> create(@Valid @RequestBody TicketForm ticketForm) throws VehicleException, TicketException {
+        var created = this.ticketService.create(ticketForm);
         return ResponseEntity.ok(created);
     }
 
@@ -41,5 +44,17 @@ public class TicketController {
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         this.ticketService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/payment")
+    public ResponseEntity<TicketDTO> updatePayment(@PathVariable String id) throws TicketException {
+        TicketDTO canceledTicket = this.ticketService.updatePayment(id);
+        return ResponseEntity.ok(canceledTicket);
+    }
+
+    @PatchMapping("/{id}/cancel")
+    public ResponseEntity<TicketDTO> cancelTicket(@PathVariable String id) throws TicketException {
+        TicketDTO canceledTicket = this.ticketService.cancelTicket(id);
+        return ResponseEntity.ok(canceledTicket);
     }
 }
