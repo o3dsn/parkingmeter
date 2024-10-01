@@ -1,4 +1,17 @@
 package com.postech.fiap.parkingmeter.domain.model.dto;
 
-public record VehicleDTO(
-    String id, String licensePlate, String model, String color, OwnerDTO owner) {}
+import com.postech.fiap.parkingmeter.domain.model.Owner;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class VehicleDTO {
+  String id;
+  String licensePlate;
+  String model;
+  String color;
+  Owner owner;
+}
