@@ -156,7 +156,6 @@ public class TicketServiceImpl implements TicketService {
     }
 
     ticket.setStatusPagamento(Ticket.StatusPagamento.CANCELADO);
-    ticket.setHorarioFim(hourNow);
 
     Ticket updatedTicket = this.ticketRepository.save(ticket);
 
